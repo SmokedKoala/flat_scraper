@@ -1,5 +1,6 @@
 import scrapy
 from urllib.parse import urljoin
+from flat_scraper.config import PIK_START_URLS
 
 class PikHtmlSpider(scrapy.Spider):
     name = "pik_html"
@@ -14,12 +15,7 @@ class PikHtmlSpider(scrapy.Spider):
                       "Chrome/123.0 Safari/537.36",
     }
 
-    start_urls = [
-        "https://www.pik.ru/search/sp?rooms=2,3&floorFrom=4&floorTo=17&status=free&sortBy=price&orderBy=asc",
-        "https://www.pik.ru/search/sp?rooms=2,3&areaFrom=55&floorFrom=4&floorTo=17&status=free&sortBy=price&orderBy=asc",
-        "https://www.pik.ru/search/kron9?rooms=2,3&floorFrom=4&floorTo=32&status=free&sortBy=price&orderBy=asc",
-        "https://www.pik.ru/search/kron9?rooms=2,3&areaFrom=55&floorFrom=4&floorTo=32&status=free&sortBy=price&orderBy=asc"
-    ]
+    start_urls = PIK_START_URLS
 
     def parse(self, response):
         # Получаем **первую карточку** как Selector
