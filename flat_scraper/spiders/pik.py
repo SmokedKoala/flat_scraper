@@ -15,9 +15,19 @@ class PikHtmlSpider(scrapy.Spider):
                       "Chrome/123.0 Safari/537.36",
     }
 
-    start_urls = PIK_START_URLS
+    def start_requests(self):
+        """Generate requests from URL dictionary with project names"""
+        for project_name, url in PIK_START_URLS.items():
+            yield scrapy.Request(
+                url=url,
+                callback=self.parse,
+                meta={'project_name': project_name}
+            )
 
     def parse(self, response):
+        # Получаем проектное имя из метаданных запроса
+        project_name = response.meta.get('project_name', '')
+        
         # Получаем **первую карточку** как Selector
         card = response.css("div[id^='listing_flat_']").get()
         if not card:
@@ -42,6 +52,7 @@ class PikHtmlSpider(scrapy.Spider):
             price = card_sel.xpath(".//div[contains(@class,'eMgPOy')]/text()").get()
 
         yield {
+            "project_name": project_name,
             "url": url,
             "title": title,
             "price": price,

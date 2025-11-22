@@ -16,9 +16,19 @@ class A101Spider(scrapy.Spider):
                       "Chrome/123.0 Safari/537.36",
     }
 
-    start_urls = A101_START_URLS
+    def start_requests(self):
+        """Generate requests from URL dictionary with project names"""
+        for project_name, url in A101_START_URLS.items():
+            yield scrapy.Request(
+                url=url,
+                callback=self.parse,
+                meta={'project_name': project_name}
+            )
 
     def parse(self, response):
+        # Получаем проектное имя из метаданных запроса
+        project_name = response.meta.get('project_name', '')
+        
         # Получаем **первую карточку** как Selector
         card = response.css("li.card-list-item").get()
         if not card:
@@ -55,6 +65,7 @@ class A101Spider(scrapy.Spider):
             price = price.strip()
 
         yield {
+            "project_name": project_name,
             "url": url,
             "title": title,
             "price": price,
