@@ -21,7 +21,7 @@ A101_START_URLS = {
     "Дом на Зорге 55+":"https://a101.ru/kvartiry/?order=actual_price&area_max=87.3&area_min=55&floor_max=16&floor_min=4&room=2,3,-2&project=dom-na-zorge"
 }
 
-# URLs for DonstroySpider
+# Криво работает
 DONSTROY_START_URLS = {
     "Символ":"https://donstroy.moscow/full-search/?price%5B%5D=15.8&price%5B%5D=725.2&area%5B%5D=25&area%5B%5D=472&floor_number%5B%5D=4&floor_number%5B%5D=50&rooms%5B%5D=2&rooms%5B%5D=3&rooms%5B%5D=4&rooms%5B%5D=5&projects%5B%5D=10&floor_first_last=false&discount=false&furnish=false&apartments=false&secondary=false&sort=price-asc&view_type=flats&page=1&view=card",
     "Символ 55+":"https://donstroy.moscow/full-search/?price%5B%5D=15.8&price%5B%5D=725.2&area%5B%5D=55&area%5B%5D=392&floor_number%5B%5D=4&floor_number%5B%5D=50&rooms%5B%5D=2&rooms%5B%5D=3&rooms%5B%5D=4&rooms%5B%5D=5&projects%5B%5D=10&floor_first_last=false&discount=false&furnish=false&apartments=false&secondary=false&sort=price-asc&view_type=flats&page=1&view=card"
@@ -32,6 +32,17 @@ LEVEL_START_URLS = {
     "Селигерская 55+": "https://level.ru/filter?rooms=2,3,4&area_min=55&area_max=67&floor_min=4&floor_max=30&project=selig&ordering=price,pk,mode&cardType=vertical",
     "Войковская": "https://level.ru/filter?rooms=2,3&floor_min=4&floor_max=24&project=vojkov&ordering=price,pk,mode&cardType=vertical",
     "Войковская 55+": "https://level.ru/filter?rooms=2,3&area_min=55&floor_min=4&floor_max=24&project=vojkov&ordering=price,pk,mode&cardType=vertical"
+}
+
+# Нельзя распарсить, карточки подгружаются JS
+LSR_START_URLS = {
+    "Дмитровское небо": "https://www.lsr.ru/msk/kvartiry-v-novostroikah/?type%5B8%5D=8&type%5B9%5D=9&price%5Bmin%5D=&price%5Bmax%5D=&price_range%5Bmin%5D=18.1&price_range%5Bmax%5D=32.2&last_delivery=30&obj%5B%5D=207&area%5Bmin%5D=&area%5Bmax%5D=&area_range%5Bmin%5D=54&area_range%5Bmax%5D=81&floor%5Bmin%5D=&floor%5Bmax%5D=&floor_range%5Bmin%5D=2&floor_range%5Bmax%5D=32&floor%5Bnfirst%5D=1&__s=",
+    "Дмитровское небо 55+": "https://www.lsr.ru/msk/kvartiry-v-novostroikah/?type%5B8%5D=8&type%5B9%5D=9&obj%5B%5D=207&area%5Bmin%5D=55.00&floor%5Bnfirst%5D=1"
+}
+
+GRANELLE_START_URLS = {
+    "Тринити": "https://granelle.ru/flats/?project=tri&order=price&is_released=0&rooms=3-euro,4-euro&floor_number_min=4&floor_number_max=32&view=grid",
+    "Тринити 55+": "https://granelle.ru/flats/?project=tri&order=price&is_released=0&rooms=3-euro,4-euro&area_max=104&area_min=55&floor_number_min=4&floor_number_max=32&view=grid"
 }
 
 # You can add more URL configurations for other spiders here

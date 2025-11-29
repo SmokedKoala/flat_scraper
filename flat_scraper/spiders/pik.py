@@ -3,7 +3,7 @@ from urllib.parse import urljoin
 from flat_scraper.config import PIK_START_URLS
 
 class PikHtmlSpider(scrapy.Spider):
-    name = "pik_html"
+    name = "pik"
 
     custom_settings = {
         "ROBOTSTXT_OBEY": False,
