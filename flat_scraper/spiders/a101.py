@@ -1,4 +1,5 @@
 import scrapy
+import re
 from urllib.parse import urljoin
 from flat_scraper.config import A101_START_URLS
 
@@ -24,6 +25,17 @@ class A101Spider(scrapy.Spider):
                 callback=self.parse,
                 meta={'project_name': project_name}
             )
+
+    def clean_price(self, price_str):
+        """Convert price string to numeric value"""
+        if not price_str:
+            return None
+        # Remove all non-digit characters except decimal point
+        price_clean = re.sub(r'[^\d]', '', str(price_str))
+        try:
+            return int(price_clean) if price_clean else None
+        except (ValueError, TypeError):
+            return None
 
     def parse(self, response):
         # Получаем проектное имя из метаданных запроса
@@ -63,11 +75,14 @@ class A101Spider(scrapy.Spider):
         
         if price:
             price = price.strip()
+        
+        # Convert price to numeric value
+        price_numeric = self.clean_price(price)
 
         yield {
             "project_name": project_name,
             "url": url,
             "title": title,
-            "price": price,
+            "price": price_numeric,
         }
 
