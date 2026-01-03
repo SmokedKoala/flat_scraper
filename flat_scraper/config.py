@@ -45,6 +45,19 @@ GRANELLE_START_URLS = {
     "Тринити 55+": "https://granelle.ru/flats/?project=tri&order=price&is_released=0&rooms=3-euro,4-euro&area_max=104&area_min=55&floor_number_min=4&floor_number_max=32&view=grid"
 }
 
+# 401 ошибка
+SAMOLET_START_URLS = {
+    "Sky Sputnik": "https://samolet.ru/flats/?nameType=s&free=1&type=100000000&ordering=-order_manual,filter_price_package,pk&rooms=2,3&floor_min=4&floor_max=26&place=true&place_project=7",
+    "Sky Sputnik 55+": "https://samolet.ru/flats/?nameType=s&free=1&type=100000000&ordering=-order_manual,filter_price_package,pk&rooms=2,3&floor_min=4&floor_max=26&place=1&place_project=7&area_min=55&area_max=89.8"
+}
+
+RG_START_URLS = {
+    "Михайловский": "https://rg-dev.ru/flats/?ordering=actual_price&status=1&complex=b0dbb09f-3c7b-eb11-8118-00155df44d2f&rooms=2,3,4&floor_min=4&floor_max=20",
+    "Михайловский 55+": "https://rg-dev.ru/flats/?ordering=actual_price&status=1&complex=b0dbb09f-3c7b-eb11-8118-00155df44d2f&rooms=2,3,4&square_min=55&square_max=94&floor_min=4&floor_max=20",
+    "Петровский парк 2": "https://rg-dev.ru/flats/?ordering=actual_price&status=1&complex=fb403bc2-e5e0-ec11-8120-00155d1f3d3d&rooms=2,3",
+    "Петровский парк 2 55+": "https://rg-dev.ru/flats/?ordering=actual_price&status=1&complex=fb403bc2-e5e0-ec11-8120-00155d1f3d3d&rooms=2,3&square_min=55"
+}
+
 # You can add more URL configurations for other spiders here
 # EXAMPLE_SPIDER_URLS = [
 #     "https://example.com/page1",
