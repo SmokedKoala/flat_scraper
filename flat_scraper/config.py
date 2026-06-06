@@ -1,18 +1,18 @@
 # URL Configuration for Scrapy Spiders
 # Add or modify URLs here to control which pages the spider will scrape
 
-# URLs for PikHtmlSpider
+# URLs for PikHtmlSpider — используем api.pik.ru (block_id = числовой ID комплекса)
 PIK_START_URLS = {
-    "Саларьево парк": "https://www.pik.ru/search/sp?rooms=2,3&floorFrom=4&floorTo=17&status=free&sortBy=price&orderBy=asc",
-    "Саларьево парк 55+": "https://www.pik.ru/search/sp?rooms=2,3&areaFrom=55&floorFrom=4&floorTo=17&status=free&sortBy=price&orderBy=asc",
-    "Кронштадтский 9": "https://www.pik.ru/search/kron9?rooms=2,3&floorFrom=4&floorTo=32&status=free&sortBy=price&orderBy=asc",
-    "Кронштадтский 9 55+": "https://www.pik.ru/search/kron9?rooms=2,3&areaFrom=55&floorFrom=4&floorTo=32&status=free&sortBy=price&orderBy=asc",
-    "Нарвин": "https://www.pik.ru/search/narvin?type=1&rooms=2,3&floorFrom=4&status=free&sortBy=price&orderBy=asc",
-    "Нарвин 55+": "https://www.pik.ru/search/narvin?type=1&rooms=2,3&areaFrom=55&floorFrom=4&status=free&sortBy=price&orderBy=asc",
-    "Большая Академическая 85": "https://www.pik.ru/search/ba85?rooms=2,3&floorFrom=4&floorTo=24&status=free&sortBy=price&orderBy=asc",
-    "Большая Академическая 85 55+": "https://www.pik.ru/search/ba85?rooms=2,3&areaFrom=55&floorFrom=4&floorTo=24&status=free&sortBy=price&orderBy=asc",
-    "Holland Park": "https://www.pik.ru/search/hp?rooms=2,3&floorFrom=4&floorTo=24&status=free&sortBy=price&orderBy=asc",
-    "Holland Park 55+": "https://www.pik.ru/search/hp?rooms=2,3&areaFrom=55&floorFrom=4&floorTo=24&status=free&sortBy=price&orderBy=asc",
+    "Саларьево парк":           "https://api.pik.ru/v2/flat?block_id=118&rooms=2,3&floor_from=4&floor_to=17&status=free&sortBy=price&orderBy=asc",
+    "Саларьево парк 55+":       "https://api.pik.ru/v2/flat?block_id=118&rooms=2,3&floor_from=4&floor_to=17&area_from=55&status=free&sortBy=price&orderBy=asc",
+    "Кронштадтский 9":          "https://api.pik.ru/v2/flat?block_id=518&rooms=2,3&floor_from=4&floor_to=32&status=free&sortBy=price&orderBy=asc",
+    "Кронштадтский 9 55+":      "https://api.pik.ru/v2/flat?block_id=518&rooms=2,3&floor_from=4&floor_to=32&area_from=55&status=free&sortBy=price&orderBy=asc",
+    "Нарвин":                   "https://api.pik.ru/v2/flat?block_id=1165&rooms=2,3&floor_from=4&status=free&sortBy=price&orderBy=asc",
+    "Нарвин 55+":               "https://api.pik.ru/v2/flat?block_id=1165&rooms=2,3&floor_from=4&area_from=55&status=free&sortBy=price&orderBy=asc",
+    "Большая Академическая 85": "https://api.pik.ru/v2/flat?block_id=1372&rooms=2,3&floor_from=4&floor_to=24&status=free&sortBy=price&orderBy=asc",
+    "Большая Академическая 85 55+": "https://api.pik.ru/v2/flat?block_id=1372&rooms=2,3&floor_from=4&floor_to=24&area_from=55&status=free&sortBy=price&orderBy=asc",
+    "Holland Park":             "https://api.pik.ru/v2/flat?block_id=320&rooms=2,3&floor_from=4&floor_to=24&status=free&sortBy=price&orderBy=asc",
+    "Holland Park 55+":         "https://api.pik.ru/v2/flat?block_id=320&rooms=2,3&floor_from=4&floor_to=24&area_from=55&status=free&sortBy=price&orderBy=asc",
 }
 
 # URLs for A101Spider
@@ -56,6 +56,11 @@ RG_START_URLS = {
     "Михайловский 55+": "https://rg-dev.ru/flats/?ordering=actual_price&status=1&complex=b0dbb09f-3c7b-eb11-8118-00155df44d2f&rooms=2,3,4&square_min=55&square_max=94&floor_min=4&floor_max=20",
     "Петровский парк 2": "https://rg-dev.ru/flats/?ordering=actual_price&status=1&complex=fb403bc2-e5e0-ec11-8120-00155d1f3d3d&rooms=2,3",
     "Петровский парк 2 55+": "https://rg-dev.ru/flats/?ordering=actual_price&status=1&complex=fb403bc2-e5e0-ec11-8120-00155d1f3d3d&rooms=2,3&square_min=55"
+}
+
+TALAN_START_URLS = {
+    "Инджой": "https://talan.ru/msk/apartments/flats?complex=2322413&floor_range=%7B%22min%22%3A%224%22%2C%22max%22%3A%22%22%7D&not_last=true&rooms=2%2B&rooms=3&rooms=3%2B&rooms=4&rooms=2",
+    "Инджой 55+": "https://talan.ru/msk/apartments/flats?complex=2322413&area_range=%7B%22min%22%3A%2255%22%2C%22max%22%3A%22%22%7D&floor_range=%7B%22min%22%3A%224%22%2C%22max%22%3A%22%22%7D&not_last=true&rooms=2%2B&rooms=3&rooms=3%2B&rooms=4&rooms=2",
 }
 
 # You can add more URL configurations for other spiders here

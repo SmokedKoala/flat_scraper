@@ -61,18 +61,12 @@ class LevelSpider(scrapy.Spider):
             rel_url = card_sel.xpath(".//a[starts-with(@href, '/') and contains(@href, '/flat/')]/@href").get()
         url = urljoin("https://level.ru", rel_url) if rel_url else None
 
-        # Название - из p._title_1r319_27 (включая текст внутри sup и других элементов)
-        # Получаем весь текст включая содержимое sup и других вложенных элементов
-        title_parts = card_sel.xpath(".//p[contains(@class, '_title_1r319_27')]//text()").getall()
+        # Название — ищем по стабильному префиксу класса (хеш-суффикс меняется при пересборке)
+        title_parts = card_sel.xpath(".//*[contains(@class, '_title_')]//text()").getall()
         if title_parts:
             title = "".join([part.strip() for part in title_parts if part.strip()]).strip()
         else:
-            # Альтернативный способ - просто получить текст
-            title = card_sel.css("p._title_1r319_27::text").get()
-            if title:
-                title = title.strip()
-            else:
-                title = None
+            title = None
 
         # Цена - из span с data-test-id="filter-flat-price-desk"
         price = card_sel.css('span[data-test-id="filter-flat-price-desk"]::text').get()
