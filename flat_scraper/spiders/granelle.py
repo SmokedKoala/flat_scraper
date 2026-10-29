@@ -42,10 +42,9 @@ class GranelleSpider(scrapy.Spider):
         project_name = response.meta.get('project_name', '')
         
         # Получаем **первую карточку** как Selector
-        card = response.css("article[class*='FlatsGridCard']").get()
+        card = response.css("article[class*='FlatsCard']").get()
         if not card:
-            # Альтернативный селектор
-            card = response.css("article.card").get()
+            card = response.css("article[class*='card']").get()
         if not card:
             self.logger.info("Карточки не найдены")
             return
@@ -53,20 +52,13 @@ class GranelleSpider(scrapy.Spider):
         # Преобразуем HTML строки обратно в Selector
         card_sel = scrapy.Selector(text=card)
 
-        # Ссылка - из a#FlatsGridCardContent или a с href начинающимся с /flats/
-        rel_url = card_sel.css("a#FlatsGridCardContent::attr(href)").get()
-        if not rel_url:
-            rel_url = card_sel.xpath(".//a[starts-with(@href, '/flats/')]/@href").get()
+        # Ссылка - из a с href начинающимся с /flats/
+        rel_url = card_sel.xpath(".//a[starts-with(@href, '/flats/')]/@href").get()
         url = urljoin("https://granelle.ru", rel_url) if rel_url else None
 
         # Название - из h2.title_X67gZ (включая весь текст с sup)
-        title_parts = card_sel.xpath(".//h2[contains(@class, 'title')]//text()").getall()
-        if title_parts:
-            title = "".join([part.strip() for part in title_parts if part.strip()]).strip()
-        else:
-            title = card_sel.css("h2[class*='title']::text").get()
-            if title:
-                title = title.strip()
+        title_raw = card_sel.xpath("string(.//h2[contains(@class, 'title')])").get()
+        title = re.sub(r'\s+', ' ', title_raw).strip() if title_raw else None
 
         # Цена - из span.priceLabel_puyxx (не старая цена)
         price = card_sel.css("span.priceLabel_puyxx::text").get()

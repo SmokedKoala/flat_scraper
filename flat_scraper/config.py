@@ -18,7 +18,7 @@ PIK_START_URLS = {
 # URLs for A101Spider
 A101_START_URLS = {
     "Дом на Зорге":"https://a101.ru/kvartiry/?order=actual_price&floor_max=16&floor_min=4&room=2,3,-2&project=dom-na-zorge",
-    "Дом на Зорге 55+":"https://a101.ru/kvartiry/?order=actual_price&area_max=87.3&area_min=55&floor_max=16&floor_min=4&room=2,3,-2&project=dom-na-zorge"
+    "Родные кварталы 55+":"https://a101.ru/kvartiry/?order=actual_price&area_min=55&floor_min=4&room=2,3&project=rodniye-kvartaly"
 }
 
 # Криво работает
@@ -41,8 +41,8 @@ LSR_START_URLS = {
 }
 
 GRANELLE_START_URLS = {
-    "Тринити": "https://granelle.ru/flats/?project=tri&order=price&is_released=0&rooms=3-euro,4-euro&floor_number_min=4&floor_number_max=32&view=grid",
-    "Тринити 55+": "https://granelle.ru/flats/?project=tri&order=price&is_released=0&rooms=3-euro,4-euro&area_max=104&area_min=55&floor_number_min=4&floor_number_max=32&view=grid"
+    "Данилов": "https://granelle.ru/flats/?project=danilovskij-ot-granel&order=price&floor_number_min=4&rooms=2,3&view=grid",
+    "Данилов 55+": "https://granelle.ru/flats/?project=danilovskij-ot-granel&order=price&floor_number_min=4&rooms=2,3&area_min=55&view=grid"
 }
 
 # 401 ошибка

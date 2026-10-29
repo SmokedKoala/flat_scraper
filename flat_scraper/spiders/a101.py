@@ -60,18 +60,16 @@ class A101Spider(scrapy.Spider):
             rel_url = card_sel.xpath(".//a[not(ancestor::ul[@class*='breadcrumbs']) and starts-with(@href, '/kvartiry/')]/@href").get()
         url = urljoin("https://a101.ru", rel_url) if rel_url else None
 
-        # Название
-        title = card_sel.css("h2[class*='title']::text").get()
-        if not title:
-            title = card_sel.xpath(".//h2[contains(@class, 'title')]//text()").get()
-        
-        if title:
-            title = title.strip()
+        # Название — в div._title_*, не в h2
+        title_parts = card_sel.xpath(
+            ".//*[contains(@class, '_title_') and not(ancestor::*[contains(@class, '_header_')])]/text()"
+        ).getall()
+        title = "".join(t.strip() for t in title_parts if t.strip()).strip() or None
 
         # Цена (не старая цена)
-        price = card_sel.css("span[class*='price']:not([class*='oldPrice'])::text").get()
-        if not price:
-            price = card_sel.xpath(".//span[contains(@class, 'price') and not(contains(@class, 'oldPrice'))]//text()").get()
+        price = card_sel.xpath(
+            ".//span[contains(@class, '_price_') and not(contains(@class, '_oldPrice_'))]/text()"
+        ).get()
         
         if price:
             price = price.strip()

@@ -68,14 +68,10 @@ class LevelSpider(scrapy.Spider):
         else:
             title = None
 
-        # Цена - из span с data-test-id="filter-flat-price-desk"
-        price = card_sel.css('span[data-test-id="filter-flat-price-desk"]::text').get()
-        if not price:
-            # Альтернативный способ - ищем в элементе с классом _price_1r319_27
-            price = card_sel.css("p._price_1r319_27 span::text").get()
-        if not price:
-            # Еще один вариант - получить текст из span внутри _price_1r319_27
-            price = card_sel.xpath(".//p[contains(@class, '_price_1r319_27')]//span[not(contains(@class, 'vtag'))]//text()").get()
+        # Цена - берём первый текстовый узел из p._price_*, исключая p._oldPrice_*
+        price = card_sel.xpath(
+            ".//p[contains(@class, '_price_') and not(contains(@class, '_oldPrice_'))]/text()[1]"
+        ).get()
         
         if price:
             price = price.strip()

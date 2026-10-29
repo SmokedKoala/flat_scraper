@@ -39,9 +39,12 @@ class PikHtmlSpider(scrapy.Spider):
         area = flat.get('area')
         title = f"{rooms} комн. {area} м²" if rooms and area else None
 
+        flat_id = flat.get('id')
+        url = f"https://www.pik.ru/flat/{flat_id}" if flat_id else None
+
         yield {
             "project_name": project_name,
-            "url": flat.get('url'),
+            "url": url,
             "title": title,
             "price": flat.get('price'),
         }
